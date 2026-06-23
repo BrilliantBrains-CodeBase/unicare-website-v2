@@ -1,0 +1,624 @@
+@import './assets/css/style.css';
+@import './assets/css/hospa-main.css';
+@import './assets/css/hospa-responsive.css';
+@import './assets/css/hospa-mobile-navbar.css';
+@import './assets/css/hospa-blog.css';
+@import './assets/css/hospa-new-demo.css';
+@import './assets/css/flaticon_hospa.css';
+@import './assets/css/owl.carousel.min.css';
+@import './assets/css/magnific-popup.min.css';
+@import './assets/css/inline-styles.css';
+
+/* ── Custom overrides ── */
+
+/* ════════════════════════════════════════
+   ANIMATION SYSTEM
+   ════════════════════════════════════════ */
+
+/* A. Smooth scroll */
+html { scroll-behavior: smooth; }
+
+/* Footer copyright mobile fix */
+@media (max-width: 767px) {
+  .copyright-area {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .copyright-area p {
+    text-align: center;
+    line-height: 1.8;
+    font-size: 13px;
+  }
+}
+
+/* Footer mobile spacing */
+@media (max-width: 1199px) {
+  .footer-area .single-footer-widget {
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 8px;
+  }
+  .footer-area .single-footer-widget:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .footer-area .custom-links li {
+    margin-bottom: 10px;
+  }
+  .footer-area .hour-info li {
+    margin-bottom: 6px;
+  }
+  .footer-area .social-info {
+    margin-top: 20px !important;
+  }
+  .footer-area .social {
+    margin-top: 12px;
+  }
+}
+
+/* Reduce marquee section vertical spacing */
+.animation-view-area.ptb-100 {
+  padding-top: 40px !important;
+  padding-bottom: 40px !important;
+}
+
+/* Doctor card — no whole-card lift; only image zooms */
+.doctor-card {
+  position: relative;
+  z-index: 1;
+}
+.doctor-card:hover {
+  z-index: 10;
+  transform: none !important;
+  box-shadow: none !important;
+}
+.doctor-area .section-title {
+  position: relative;
+  z-index: 2;
+}
+.doctor-information-tabs .nav {
+  position: relative;
+  z-index: 2;
+}
+
+/* Doctors section — fix pill tab / slider overlap */
+.doctor-information-tabs .nav-tabs {
+  border-bottom: none !important; /* remove Bootstrap underline */
+}
+.doctor-information-tabs .nav-tabs .nav-link {
+  margin-bottom: 0 !important; /* cancel Bootstrap -1px pull-down */
+}
+.doctor-information-tabs .nav {
+  margin-bottom: 48px !important; /* enforce gap between pills and cards */
+}
+/* Let doctor cards zoom/lift without being clipped by Swiper's overflow */
+.doctor-slider .swiper {
+  overflow: visible;
+  padding-bottom: 12px; /* breathing room for drop shadow */
+}
+.doctor-slider-inner {
+  padding-top: 10px; /* room for translateY lift on top cards */
+}
+@media (max-width: 767px) {
+  .doctor-slider-inner {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+/* Doctors section h2 — scale down so the full heading fits in 2 lines on desktop */
+.doctor-area .section-title h2 {
+  font-size: clamp(24px, 2.6vw, 34px);
+}
+
+/* B. Scroll-reveal base */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 480ms ease, transform 480ms ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 80ms; }
+.reveal-delay-2 { transition-delay: 160ms; }
+.reveal-delay-3 { transition-delay: 240ms; }
+.reveal-delay-4 { transition-delay: 320ms; }
+
+/* C. Card hover lifts */
+.services-card {
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.services-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+}
+.blog-card {
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.10);
+}
+/* Doctor card lift removed — image-only zoom via .doctor-image below */
+.overview-card {
+  transition: transform 220ms ease;
+}
+.overview-card:hover {
+  transform: translateY(-4px);
+}
+.features-card {
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.features-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.09);
+}
+
+/* D. Doctor image zoom — padding absorbs the scale so edges never clip */
+.doctor-card .doctor-image {
+  overflow: hidden;
+  border-radius: 20px;
+  padding: 10px;
+}
+.doctor-card .doctor-image a img {
+  border-radius: 12px;
+  display: block;
+  width: 100%;
+  transition: transform 400ms ease;
+}
+.doctor-card:hover .doctor-image a img {
+  transform: scale(1.06);
+}
+/* Bottom overlay button — match container radius so corner stays curved */
+.doctor-card .doctor-btn {
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+}
+
+/* E. Button press feedback */
+.default-btn:active {
+  transform: scale(0.96) !important;
+  transition-duration: 80ms !important;
+}
+.mobile-bottom-bar__book-circle {
+  transition: transform 200ms ease;
+}
+.mobile-bottom-bar__book-circle:active {
+  transform: scale(0.90);
+  transition-duration: 80ms;
+}
+
+/* F. Nav dropdown transition (Hospa CSS sets opacity/transform, we add transition) */
+.navbar .navbar-nav .nav-item .dropdown-menu {
+  transition: opacity 200ms ease, transform 200ms ease, visibility 200ms;
+}
+
+/* G. Search popup fade */
+.search-popup {
+  transition: opacity 250ms ease, visibility 250ms;
+}
+.search-popup:not(.active) {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.search-popup.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* H. Mobile offcanvas slide-in from right */
+.mobile-navbar.offcanvas {
+  transition: transform 300ms ease, visibility 300ms;
+}
+.mobile-navbar.offcanvas:not(.show) {
+  transform: translateX(100%);
+}
+.mobile-navbar.offcanvas.show {
+  transform: translateX(0);
+}
+
+/* I. Back-to-top fade */
+#backtotop {
+  transition: opacity 300ms ease, visibility 300ms ease, top 300ms ease, background-color 200ms ease;
+}
+
+/* J. Burger → X animation */
+.navbar-toggler .burger-menu span {
+  transition: transform 250ms ease, opacity 200ms ease;
+}
+.navbar-toggler.is-open .top-bar {
+  transform: translateY(8px) rotate(45deg);
+}
+.navbar-toggler.is-open .middle-bar {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.navbar-toggler.is-open .bottom-bar {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* K. prefers-reduced-motion guard */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .services-card, .blog-card, .doctor-card,
+  .overview-card, .features-card {
+    transition: none !important;
+    transform: none !important;
+  }
+  .doctor-card .doctor-image a img { transition: none !important; }
+  .default-btn:active { transform: none !important; }
+  .mobile-navbar.offcanvas { transition: none !important; }
+  .search-popup { transition: none !important; }
+}
+
+
+/* Font: Libre Franklin (matches scraped Hospa template) */
+body {
+  font-family: 'Libre Franklin', sans-serif;
+}
+
+/* Large-screen responsiveness — scale container past Bootstrap's 1320px ceiling */
+.container,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl,
+.container-xxl {
+  max-width: clamp(1320px, 88vw, 1800px) !important;
+}
+
+/* P2 — Focus rings for keyboard navigation (WCAG AA) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--mainColor);
+  outline-offset: 3px;
+}
+
+/* P2 — cursor-pointer on all clickable non-button elements */
+.features-btn,
+.services-btn,
+.services-card,
+.blog-btn,
+.blog-card,
+.doctor-card,
+.overview-card,
+.features-card,
+.nav-link,
+.search-toggler,
+.blog-button-prev,
+.blog-button-next {
+  cursor: pointer;
+}
+
+/* P2 — Smooth CTA hover transitions (150-300ms) */
+.default-btn {
+  transition: background-color 200ms ease, color 200ms ease, transform 150ms ease, box-shadow 200ms ease;
+}
+.default-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+.services-btn,
+.features-btn,
+.link-btn,
+.blog-btn {
+  transition: color 180ms ease, padding-left 180ms ease;
+}
+
+/* P3 — prefers-reduced-motion: stop marquee animation */
+@media (prefers-reduced-motion: reduce) {
+  .animation-text {
+    animation: none !important;
+  }
+  .swiper-wrapper {
+    transition-duration: 0ms !important;
+  }
+}
+
+/* P3 — Mobile bottom bar safe area fix */
+@media (max-width: 1199px) {
+  body {
+    padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+
+/* ── Mobile sticky bottom nav bar ── */
+.mobile-bottom-bar {
+  display: none;
+}
+
+@media (max-width: 1199px) {
+  .mobile-bottom-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: #ffffff;
+    border-top: 1px solid #e8ecf0;
+    padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+  }
+
+  .mobile-bottom-bar__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    color: #6b7280;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 500;
+    flex: 1;
+  }
+
+  .mobile-bottom-bar__item i {
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  .mobile-bottom-bar__item:hover {
+    color: var(--mainColor);
+  }
+
+  /* Centre Book button — raised teal circle */
+  .mobile-bottom-bar__book {
+    position: relative;
+    top: -16px;
+    color: var(--mainColor);
+  }
+
+  .mobile-bottom-bar__book-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: var(--mainColor);
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(44,170,160,0.45);
+  }
+
+  .mobile-bottom-bar__book-circle i {
+    font-size: 24px;
+  }
+
+  .mobile-bottom-bar__book span:last-child {
+    color: var(--mainColor);
+    font-weight: 600;
+  }
+
+  /* Add bottom padding to page so content isn't hidden behind bar */
+  body {
+    padding-bottom: 70px;
+  }
+}
+
+
+/* Blog card image fixed height — prevents blank space from tall PNG images */
+.blog-card .blog-image {
+  overflow: hidden;
+  border-radius: 20px;
+}
+.blog-card .blog-image a img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Equal-height specialty service cards with 3-line text clamp */
+.services-area .row {
+  align-items: stretch;
+}
+.services-area .col-xl-3,
+.services-area .col-md-6 {
+  display: flex;
+}
+.services-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.services-card p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+.services-card .services-btn {
+  margin-top: auto;
+}
+
+.general-hospital-slider-item {
+  padding-top: 200px;
+  padding-bottom: 60px;
+}
+
+/* Logo bigger, card height unchanged: 25 + 90 + 25 = 140px */
+.navbar-area-with-transparent-color .navbar-brand {
+  padding: 25px 28px 25px 0;
+}
+
+/* Sticky navbar pure white on mobile */
+@media (max-width: 1199px) {
+  .navbar-area-with-transparent-color.is-sticky {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+  }
+  .navbar-area-with-transparent-color.is-sticky .navbar-toggler .burger-menu span {
+    background: var(--mainColor);
+  }
+}
+
+/* Reduce navbar logo padding on mobile so navbar height is compact */
+@media (max-width: 1199px) {
+  .navbar-area-with-transparent-color .navbar-brand {
+    padding: 12px 16px 12px 0;
+  }
+  .navbar-area-with-transparent-color .navbar-brand::before {
+    margin-top: -12px;
+  }
+}
+
+/* Mobile hero: gap between sub-cards and nav buttons */
+@media (max-width: 767px) {
+  .general-hospital-slider-item {
+    padding-bottom: 130px;
+  }
+  /* Keep nav buttons right-aligned */
+  .general-hospital-slider .owl-nav {
+    bottom: 36px;
+    right: 20px;
+    gap: 12px;
+  }
+  /* Gap between the two sub-cards (image + info box) */
+  .general-hospital-slider-content .inner-image {
+    margin-bottom: 16px;
+  }
+}
+
+/* Prevent nav links from wrapping */
+.navbar .navbar-nav .nav-item .nav-link {
+  white-space: nowrap;
+}
+
+/* Keep all 3 CTA buttons same height — no text wrap */
+.navbar .others-option .option-item .default-btn {
+  white-space: nowrap;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Dark shade behind transparent navbar (like Hospa dark header) */
+.navbar-area-with-transparent-color {
+  background: linear-gradient(to bottom, rgba(0, 5, 30, 0.55) 0%, rgba(0, 5, 30, 0.25) 100%);
+}
+
+/* Gap between hero slider prev / next buttons */
+.general-hospital-slider .owl-nav {
+  gap: 16px;
+}
+.general-hospital-slider .owl-nav .owl-prev {
+  margin-right: 0;
+}
+
+/* gh-area must be a positioning parent so the shape anchors to it */
+.gh-area {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Nav buttons sit inside the semi-circle arc (right:30, bottom:210 from slider base)
+   z-index 3 keeps them below the sticky navbar (z-index 999) on scroll */
+.general-hospital-slider .owl-nav {
+  z-index: 3;
+}
+
+/* Strip the rectangular button wrapper — only the circular span shows */
+.general-hospital-slider .owl-nav button {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Remove outer border/container from Why Unicare section */
+.overview-inner-area {
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* Unclip Swiper so overview card hover zoom is not cut off */
+.overview-inner-area .swiper {
+  overflow: visible;
+  padding: 10px 4px;
+}
+
+/* Desktop: hide duplicate slides (cards 4–6 from doubled array) */
+@media (min-width: 768px) {
+  .overview-inner-area .swiper-slide:nth-child(n+4) {
+    display: none !important;
+  }
+}
+
+/* Equal-height Why Unicare cards */
+.overview-inner-area .row {
+  align-items: stretch;
+}
+.overview-inner-area .col-lg-4,
+.overview-inner-area .col-md-6 {
+  display: flex;
+}
+.overview-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.overview-card .overview-btn {
+  margin-top: auto;
+}
+
+/* Uniform doctor card image height */
+.doctor-card .doctor-image img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* Doctor slider nav — strip default button border/bg */
+.doctor-slider-inner .owl-prev,
+.doctor-slider-inner .owl-next {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  cursor: pointer;
+}
+.doctor-slider-inner .owl-prev i,
+.doctor-slider-inner .owl-next i {
+  border: none !important;
+}
+
+/* Equal-height bottom sub-cards in hero */
+.general-hospital-slider-content .row {
+  align-items: stretch !important;
+}
+.general-hospital-slider-content .inner-image {
+  height: 100%;
+}
+.general-hospital-slider-content .inner-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.general-hospital-slider-content .inner-info {
+  height: 100%;
+  display: flex;
+}
+.general-hospital-slider-content .inner-info .box {
+  flex: 1;
+}
