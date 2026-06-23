@@ -26,18 +26,31 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="footer-area pt-100">
+    <footer className="footer-area" style={{ paddingTop: '70px' }}>
       <div className="container">
         <div className="row g-4">
 
-          {/* Col 1 — Logo + Address (no social here) */}
+          {/* Col 1 — Logo + Social */}
           <div className="col-xl-3 col-lg-6 col-md-12 reveal">
             <div className="single-footer-widget pe-3">
               <div className="widget-logo">
-                <a href="/"><img src={logoWhite} alt="Unicare Hospitals" width="160" height="70" style={{ objectFit: 'contain' }} /></a>
+                <a href="/">
+                  <div style={{ display: 'inline-block', background: '#ffffff', borderRadius: '12px', padding: '10px 16px' }}>
+                    <img src={logoWhite} alt="Unicare Hospitals" width="160" height="60" style={{ objectFit: 'contain', display: 'block' }} />
+                  </div>
+                </a>
               </div>
-              <div className="locations">
-                <p><span>Address: </span>A 201, 2nd Floor, Saanvi Antalya Homes, Kokapet, Telangana</p>
+              <p style={{ fontSize: '13px', lineHeight: '1.7', marginTop: '16px', color: 'var(--whiteColor)', opacity: 0.75 }}>
+                A doctor-founded multispecialty hospital in Kokapet, bringing specialist care close to home for the families of West Hyderabad.
+              </p>
+              <div className="social-info" style={{ marginTop: '16px' }}>
+                <ul className="social">
+                  {socials.map(s => (
+                    <li key={s.icon}>
+                      <a href={s.href} target="_blank" rel="noreferrer"><i className={s.icon}></i></a>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
@@ -67,35 +80,13 @@ export default function Footer() {
             <div className="single-footer-widget">
               <h3>Contact</h3>
               <ul className="custom-links">
+                <li style={{ color: 'var(--whiteColor)', opacity: 0.75 }}>A 201, 2nd Floor, Saanvi Antalya Homes, Kokapet, Telangana</li>
                 <li><a href="tel:+919090546363">+91 90905 46363</a></li>
                 <li><a href="tel:+919121856565">+91 91218 56565</a></li>
                 <li><a href="mailto:info@unicareglobalhospitals.com">info@unicareglobalhospitals.com</a></li>
                 <li><a href="mailto:helpdesk@unicareglobalhospitals.com">helpdesk@unicareglobalhospitals.com</a></li>
                 <li><a href="https://www.unicareglobalhospitals.com" target="_blank" rel="noreferrer">www.unicareglobalhospitals.com</a></li>
               </ul>
-            </div>
-          </div>
-
-          {/* Col 5 — Social Media (new standalone column) */}
-          <div className="col-xl col-lg-3 col-sm-6 reveal reveal-delay-4">
-            <div className="single-footer-widget">
-              <h3>Follow Us</h3>
-              <div className="social-info" style={{ marginTop: '12px' }}>
-                <ul className="social">
-                  {socials.map(s => (
-                    <li key={s.icon}>
-                      <a href={s.href} target="_blank" rel="noreferrer"><i className={s.icon}></i></a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div style={{ marginTop: '24px' }}>
-                <h3>Legal</h3>
-                <ul className="custom-links">
-                  <li><a href="#">Privacy Policy</a></li>
-                  <li><a href="#">Terms &amp; Conditions</a></li>
-                </ul>
-              </div>
             </div>
           </div>
 

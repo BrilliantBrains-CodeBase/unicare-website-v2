@@ -31,6 +31,14 @@ html { scroll-behavior: smooth; }
   }
 }
 
+/* Footer column link spacing — tighter than Hospa default */
+.footer-area .custom-links li {
+  margin-bottom: 8px !important;
+}
+.footer-area .single-footer-widget h3 {
+  margin-bottom: 16px !important;
+}
+
 /* Footer mobile spacing */
 @media (max-width: 1199px) {
   .footer-area .single-footer-widget {
