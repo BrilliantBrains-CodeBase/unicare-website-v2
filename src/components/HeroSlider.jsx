@@ -104,7 +104,7 @@ export default function HeroSlider() {
                         <div className="inner-info">
                           <div className="box">
                             <span className="sub">
-                              Unicare Hospitals, Kokapet. Open <strong>Mon – Sat</strong> for OPD.
+                              Unicare Hospitals, Kokapet. OPD: <strong>Mon – Sat</strong>, 10 AM–2 PM &amp; 5–8 PM.
                             </span>
                             <p>Call for same-day appointments and emergency assistance.</p>
                             <div className="phone-btn">

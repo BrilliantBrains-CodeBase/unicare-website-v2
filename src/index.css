@@ -465,6 +465,11 @@ textarea:focus-visible {
   padding: 25px 28px 25px 0;
 }
 
+/* Prevent white card from growing on large screens */
+.navbar-area-with-transparent-color .navbar-brand::before {
+  margin-left: -30px !important;
+}
+
 /* Sticky navbar pure white on mobile */
 @media (max-width: 1199px) {
   .navbar-area-with-transparent-color.is-sticky {

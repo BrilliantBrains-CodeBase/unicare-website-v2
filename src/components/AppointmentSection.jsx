@@ -9,7 +9,7 @@ const MAPS_DIRECTIONS =
 export default function AppointmentSection() {
   const [form, setForm] = useState({
     name: '', email: '', phone: '', reason: '',
-    physician: 'CHOOSE PHYSICIAN', time: '08:00 AM', date: '',
+    physician: 'CHOOSE PHYSICIAN', time: '10:00 AM', date: '',
   })
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
@@ -109,10 +109,17 @@ export default function AppointmentSection() {
                     <div className="form-group">
                       <label htmlFor="appt-time" className="visually-hidden">Preferred Time</label>
                       <select id="appt-time" name="time" className="form-select form-control" value={form.time} onChange={handleChange}>
-                        <option value="08:00 AM">08:00 AM</option>
-                        <option value="09:00 AM">09:00 AM</option>
-                        <option value="10:00 AM">10:00 AM</option>
-                        <option value="11:00 AM">11:00 AM</option>
+                        <optgroup label="Morning (10 AM – 2 PM)">
+                          <option value="10:00 AM">10:00 AM</option>
+                          <option value="11:00 AM">11:00 AM</option>
+                          <option value="12:00 PM">12:00 PM</option>
+                          <option value="01:00 PM">01:00 PM</option>
+                        </optgroup>
+                        <optgroup label="Evening (5 PM – 8 PM)">
+                          <option value="05:00 PM">05:00 PM</option>
+                          <option value="06:00 PM">06:00 PM</option>
+                          <option value="07:00 PM">07:00 PM</option>
+                        </optgroup>
                       </select>
                     </div>
                   </div>
